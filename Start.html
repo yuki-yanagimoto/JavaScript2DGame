@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<title>あとのせれんさパズル</title>
+
+<meta charset="utf-8">
+
+</head>
+
+<body style="background-color:#208; text-align:center;">
+
+<div style="position: absolute; top: 10px; left: 10px; z-index: 10; color: white;">
+    <label for="volumeSlider">音量: </label>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.3">
+</div>
+
+<canvas id="canvas" style="position:absolute; top:0; right:0; bottom:0; left:0; margin:auto;"></canvas>
+
+<!-- WWS ゲームシステム プログラム -->
+<script src="WWS.js"></script>
+
+<!-- ゲームプログラム -->
+<script src="pzl.js"></script>
+
+<noscript>JavaScriptをONにして起動して下さい</noscript>
+
+<script>
+const volumeSlider = document.getElementById("volumeSlider");
+
+volumeSlider.addEventListener("input", () => {
+  const vol = parseFloat(volumeSlider.value);
+  for (let i = 0; i < soundfile.length; i++) {
+    if (soundfile[i]) {
+      soundfile[i].volume = vol;
+    }
+  }
+});
+
+volumeSlider.addEventListener("keydown", (e) => {
+  e.preventDefault();  // ← これで←→キーがスライダーに効かなくなる
+});
+
+
+</script>
+
+</body>
+
+
+
+</html>
